@@ -41,29 +41,27 @@ export default class Menu extends React.Component {
   render() {
     const { disabled, deleting } = this.state;
     const { posts } = this.props;
-    const classForAddingPostForm = disabled ? "hidden" : "show";
-    const classForDeletingPostForm = deleting ? "hidden" : "show";
 
     return (
         <div>
             <button
                 onClick={this.showHideFormAddingPost}
                 disabled={!disabled}
-                className={`btn btn-primary`}
+                className='btn btn-primary'
             >
                 Add post
             </button>
             <button
                 onClick={this.showHideFormAddingPost}
                 disabled={disabled}
-                className={`btn btn-primary`}
+                className='btn btn-primary'
             >
                 Hide form
             </button>
             <button
                 onClick={this.changeDeleteState}
                 disabled={!posts.length}
-                className={`btn btn-primary`}
+                className='btn btn-primary'
             >
                 Delete post
             </button>

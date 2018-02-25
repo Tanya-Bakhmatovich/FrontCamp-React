@@ -5,63 +5,71 @@ import FilterPosts from './FilterPosts';
 
 export default class AppContainer extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      posts: [],
-    };
+    constructor() {
+        super();
+        this.state = {
+            posts: [],
+        };
+    }
+
+    onAddingPostHandler = (value) => {
+
+        this.setState(({ posts }) => {
+             const newPosts = posts;
+             newPosts.push(value);
+
+              return {
+                  posts: newPosts
+              }
+        })
   }
 
-  onAddingPostHandler = (value) => {
+    onDeletingPostHandler = (ident) => {
 
-    this.setState(({ posts }) => {
-      const newPosts = posts;
-      newPosts.push(value);
+        this.setState(({ posts }) => {
+            const indexPostForDeleting = posts.findIndex(({ id }) => id === ident);
 
-      return {
-        posts: newPosts
-      }
-    })
-  }
+            const newPosts = posts;
 
-  onDeletingPostHandler = (ident) => {
+            if (indexPostForDeleting > -1) {
+                newPosts.splice(indexPostForDeleting, 1);
+            }
 
-    this.setState(({ posts }) => {
-      const indexPostForDeleting = posts.findIndex(({ id }) => id === ident);
+            return {
+                posts: newPosts
+            }
+        })
+    }
 
-      const newPosts = posts;
+    filter = () => {
+        const valueOfFilter = document.getElementById('id-input-filter').value;
 
-      if (indexPostForDeleting > -1) {
-        newPosts.splice(indexPostForDeleting, 1);
-      }
+        this.setState(({ posts }) => {
+            const newPosts = posts.filter(({ author }) => author.indexOf(valueOfFilter) > -1);
 
-      return {
-        posts: newPosts
-      }
-    })
-  }
+            return {
+                posts: newPosts
+            }
+        });
+    }
 
-  filter = (newPosts) => {
-      this.setState({ posts: newPosts });
-  }
+    render() {
+        const { posts } = this.state;
 
-  render() {
-    const { posts } = this.state;
-
-    return (
-      <div>
-        <h3>Posts</h3>
-        <FilterPosts posts={posts} filterPosts={this.filter} />
-        <Menu
-            onAddingPostHandler={this.onAddingPostHandler}
-            onDeletingPostHandler={this.onDeletingPostHandler}
-            posts={posts}
-        />
-        <br/>
-        <div className="container-posts row">
-            {posts.map((post, index) => <Post key={index} post={post} />)}
-        </div>
-      </div>
-    );
-  }
+        return (
+            <div>
+            <h3>Posts</h3>
+            <FilterPosts posts={posts} filterPosts={this.filter} />
+            <Menu
+                onAddingPostHandler={this.onAddingPostHandler}
+                onDeletingPostHandler={this.onDeletingPostHandler}
+                posts={posts}
+            />
+            <br/>
+            <div className='container-posts row'>
+                {posts.map((post, index) => <Post key={index} post={post} />)}
+            </div>
+            </div>
+        );
+    }
 }

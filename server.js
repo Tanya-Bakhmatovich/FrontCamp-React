@@ -8857,10 +8857,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var app = (0, _express2.default)();
 
-app.use(_express2.default.static("dist"));
+app.use(_express2.default.static('dist'));
 
-app.get("*", function (req, res) {
-    res.send('\n    <!DOCTYPE html>\n    <html lang="en">\n    <head>\n        <meta charset="utf-8">\n        <title>Blog application</title>\n        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" >\n        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n        <script src="bundle.js" defer></script>\n    </head>\n    <body>\n        <div id="app" class="container">' + (0, _server.renderToString)(_react2.default.createElement(_AppContainer2.default, null)) + '</div>\n    </body>\n    </html>\n    ');
+app.get('*', function (req, res) {
+    res.send('\n        <!DOCTYPE html>\n        <html lang=\'en\'>\n        <head>\n            <meta charset=\'utf-8\'>\n            <title>Blog application</title>\n            <link rel=\'stylesheet\' href=\'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css\' >\n            <link rel=\'stylesheet\' href=\'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\'>\n            <script src=\'bundle.js\' defer></script>\n        </head>\n        <body>\n            <div id=\'app\' class=\'container\'>' + (0, _server.renderToString)(_react2.default.createElement(_AppContainer2.default, null)) + '</div>\n        </body>\n        </html>\n    ');
 });
 
 app.listen(process.env.PORT || 3000, function () {
@@ -26486,7 +26486,7 @@ module.exports = camelize;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -26516,92 +26516,105 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var AppContainer = function (_React$Component) {
-  _inherits(AppContainer, _React$Component);
+    _inherits(AppContainer, _React$Component);
 
-  function AppContainer() {
-    _classCallCheck(this, AppContainer);
+    function AppContainer() {
+        _classCallCheck(this, AppContainer);
 
-    var _this = _possibleConstructorReturn(this, (AppContainer.__proto__ || Object.getPrototypeOf(AppContainer)).call(this));
+        var _this = _possibleConstructorReturn(this, (AppContainer.__proto__ || Object.getPrototypeOf(AppContainer)).call(this));
 
-    _this.onAddingPostHandler = function (value) {
+        _this.onAddingPostHandler = function (value) {
 
-      _this.setState(function (_ref) {
-        var posts = _ref.posts;
+            _this.setState(function (_ref) {
+                var posts = _ref.posts;
 
-        var newPosts = posts;
-        newPosts.push(value);
+                var newPosts = posts;
+                newPosts.push(value);
 
-        return {
-          posts: newPosts
+                return {
+                    posts: newPosts
+                };
+            });
         };
-      });
-    };
 
-    _this.onDeletingPostHandler = function (ident) {
+        _this.onDeletingPostHandler = function (ident) {
 
-      _this.setState(function (_ref2) {
-        var posts = _ref2.posts;
+            _this.setState(function (_ref2) {
+                var posts = _ref2.posts;
 
-        var indexPostForDeleting = posts.findIndex(function (_ref3) {
-          var id = _ref3.id;
-          return id === ident;
-        });
+                var indexPostForDeleting = posts.findIndex(function (_ref3) {
+                    var id = _ref3.id;
+                    return id === ident;
+                });
 
-        var newPosts = posts;
+                var newPosts = posts;
 
-        if (indexPostForDeleting > -1) {
-          newPosts.splice(indexPostForDeleting, 1);
-        }
+                if (indexPostForDeleting > -1) {
+                    newPosts.splice(indexPostForDeleting, 1);
+                }
 
-        return {
-          posts: newPosts
+                return {
+                    posts: newPosts
+                };
+            });
         };
-      });
-    };
 
-    _this.filter = function (newPosts) {
-      _this.setState({ posts: newPosts });
-    };
+        _this.filter = function () {
+            var valueOfFilter = document.getElementById('id-input-filter').value;
 
-    _this.state = {
-      posts: []
-    };
-    return _this;
-  }
+            _this.setState(function (_ref4) {
+                var posts = _ref4.posts;
 
-  _createClass(AppContainer, [{
-    key: 'render',
-    value: function render() {
-      var posts = this.state.posts;
+                var newPosts = posts.filter(function (_ref5) {
+                    var author = _ref5.author;
+                    return author.indexOf(valueOfFilter) > -1;
+                });
 
+                return {
+                    posts: newPosts
+                };
+            });
+        };
 
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Posts'
-        ),
-        _react2.default.createElement(_FilterPosts2.default, { posts: posts, filterPosts: this.filter }),
-        _react2.default.createElement(_Menu2.default, {
-          onAddingPostHandler: this.onAddingPostHandler,
-          onDeletingPostHandler: this.onDeletingPostHandler,
-          posts: posts
-        }),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'div',
-          { className: 'container-posts row' },
-          posts.map(function (post, index) {
-            return _react2.default.createElement(_Post2.default, { key: index, post: post });
-          })
-        )
-      );
+        _this.state = {
+            posts: []
+        };
+        return _this;
     }
-  }]);
 
-  return AppContainer;
+    _createClass(AppContainer, [{
+        key: 'render',
+        value: function render() {
+            var posts = this.state.posts;
+
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h3',
+                    null,
+                    'Posts'
+                ),
+                _react2.default.createElement(_FilterPosts2.default, { posts: posts, filterPosts: this.filter }),
+                _react2.default.createElement(_Menu2.default, {
+                    onAddingPostHandler: this.onAddingPostHandler,
+                    onDeletingPostHandler: this.onDeletingPostHandler,
+                    posts: posts
+                }),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'container-posts row' },
+                    posts.map(function (post, index) {
+                        return _react2.default.createElement(_Post2.default, { key: index, post: post });
+                    })
+                )
+            );
+        }
+    }]);
+
+    return AppContainer;
 }(_react2.default.Component);
 
 exports.default = AppContainer;
@@ -26614,7 +26627,7 @@ exports.default = AppContainer;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -26632,75 +26645,74 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Post = function (_React$Component) {
-  _inherits(Post, _React$Component);
+    _inherits(Post, _React$Component);
 
-  function Post() {
-    _classCallCheck(this, Post);
+    function Post() {
+        _classCallCheck(this, Post);
 
-    return _possibleConstructorReturn(this, (Post.__proto__ || Object.getPrototypeOf(Post)).apply(this, arguments));
-  }
-
-  _createClass(Post, [{
-    key: 'render',
-    value: function render() {
-      var _props$post = this.props.post,
-          title = _props$post.title,
-          author = _props$post.author,
-          published = _props$post.published,
-          text = _props$post.text;
-
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'post-block col-md-4 list-group-item' },
-        _react2.default.createElement(
-          'div',
-          { className: 'post-title' },
-          _react2.default.createElement(
-            'strong',
-            null,
-            'Title:'
-          ),
-          ' ',
-          title
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'post-author' },
-          _react2.default.createElement(
-            'strong',
-            null,
-            'Author:'
-          ),
-          ' ',
-          author
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'post-date' },
-          _react2.default.createElement(
-            'strong',
-            null,
-            'Published:'
-          ),
-          ' ',
-          published
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'div',
-          { className: 'post-text' },
-          text
-        )
-      );
+        return _possibleConstructorReturn(this, (Post.__proto__ || Object.getPrototypeOf(Post)).apply(this, arguments));
     }
-  }]);
 
-  return Post;
+    _createClass(Post, [{
+        key: 'render',
+        value: function render() {
+            var _props$post = this.props.post,
+                title = _props$post.title,
+                author = _props$post.author,
+                published = _props$post.published,
+                text = _props$post.text;
+
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'post-block col-md-4 list-group-item' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'post-title' },
+                    _react2.default.createElement(
+                        'strong',
+                        null,
+                        'Title:'
+                    ),
+                    ' ',
+                    title
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'post-author' },
+                    _react2.default.createElement(
+                        'strong',
+                        null,
+                        'Author:'
+                    ),
+                    ' ',
+                    author
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'post-date' },
+                    _react2.default.createElement(
+                        'strong',
+                        null,
+                        'Published:'
+                    ),
+                    ' ',
+                    published
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'post-text' },
+                    text
+                )
+            );
+        }
+    }]);
+
+    return Post;
 }(_react2.default.Component);
 
 exports.default = Post;
-;
 
 /***/ }),
 /* 156 */
@@ -26784,8 +26796,6 @@ var Menu = function (_React$Component) {
                 deleting = _state.deleting;
             var posts = this.props.posts;
 
-            var classForAddingPostForm = disabled ? "hidden" : "show";
-            var classForDeletingPostForm = deleting ? "hidden" : "show";
 
             return _react2.default.createElement(
                 'div',
@@ -26975,7 +26985,6 @@ var PostCreator = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = PostCreator;
-;
 
 /***/ }),
 /* 158 */
@@ -26985,7 +26994,7 @@ exports.default = PostCreator;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -27003,65 +27012,64 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var PostDeletingForm = function (_React$Component) {
-  _inherits(PostDeletingForm, _React$Component);
+    _inherits(PostDeletingForm, _React$Component);
 
-  function PostDeletingForm() {
-    var _ref;
+    function PostDeletingForm() {
+        var _ref;
 
-    var _temp, _this, _ret;
+        var _temp, _this, _ret;
 
-    _classCallCheck(this, PostDeletingForm);
+        _classCallCheck(this, PostDeletingForm);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PostDeletingForm.__proto__ || Object.getPrototypeOf(PostDeletingForm)).call.apply(_ref, [this].concat(args))), _this), _this.deletePost = function () {
+            var id = document.getElementById('id-input-delete');
+
+            _this.props.deletePost(id.value);
+
+            id.value = '';
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PostDeletingForm.__proto__ || Object.getPrototypeOf(PostDeletingForm)).call.apply(_ref, [this].concat(args))), _this), _this.deletePost = function () {
-      var id = document.getElementById('id-input-delete');
+    _createClass(PostDeletingForm, [{
+        key: 'render',
+        value: function render() {
 
-      _this.props.deletePost(id.value);
+            return _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'col-auto' },
+                    _react2.default.createElement(
+                        'label',
+                        null,
+                        ' Enter Id for deleting'
+                    ),
+                    _react2.default.createElement('input', { id: 'id-input-delete', type: 'text', className: 'form-control' })
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'button',
+                    {
+                        id: 'post-blog-button',
+                        type: 'button',
+                        className: 'btn btn-primary',
+                        onClick: this.deletePost
+                    },
+                    'Delete'
+                )
+            );
+        }
+    }]);
 
-      id.value = '';
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(PostDeletingForm, [{
-    key: 'render',
-    value: function render() {
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'form-group' },
-        _react2.default.createElement(
-          'div',
-          { className: 'col-auto' },
-          _react2.default.createElement(
-            'label',
-            null,
-            ' Enter Id for deleting'
-          ),
-          _react2.default.createElement('input', { id: 'id-input-delete', type: 'text', className: 'form-control' })
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'button',
-          {
-            id: 'post-blog-button',
-            type: 'button',
-            className: 'btn btn-primary',
-            onClick: this.deletePost
-          },
-          'Delete'
-        )
-      );
-    }
-  }]);
-
-  return PostDeletingForm;
+    return PostDeletingForm;
 }(_react2.default.Component);
 
 exports.default = PostDeletingForm;
-;
 
 /***/ }),
 /* 159 */
@@ -27103,16 +27111,7 @@ var FilterPosts = function (_React$Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = FilterPosts.__proto__ || Object.getPrototypeOf(FilterPosts)).call.apply(_ref, [this].concat(args))), _this), _this.filter = function () {
-      var posts = _this.props.posts;
-
-      var value = document.getElementById('id-input-filter').value;
-
-      var newPosts = posts.filter(function (_ref2) {
-        var author = _ref2.author;
-        return author.indexOf(value) > -1;
-      });
-
-      _this.props.filterPosts(newPosts);
+      _this.props.filterPosts();
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -27146,7 +27145,6 @@ var FilterPosts = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = FilterPosts;
-;
 
 /***/ })
 /******/ ]);

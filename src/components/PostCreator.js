@@ -65,4 +65,4 @@ export default class PostCreator extends React.Component {
       </div>
     );
   }
-};
+}
