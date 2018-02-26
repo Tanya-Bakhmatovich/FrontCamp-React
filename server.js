@@ -26560,7 +26560,7 @@ var AppContainer = function (_React$Component) {
         };
 
         _this.filter = function () {
-            var valueOfFilter = document.getElementById('id-input-filter').value;
+            var valueOfFilter = _this.inputElement.value;
 
             _this.setState(function (_ref4) {
                 var posts = _ref4.posts;
@@ -26585,6 +26585,8 @@ var AppContainer = function (_React$Component) {
     _createClass(AppContainer, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             var posts = this.state.posts;
 
 
@@ -26596,7 +26598,13 @@ var AppContainer = function (_React$Component) {
                     null,
                     'Posts'
                 ),
-                _react2.default.createElement(_FilterPosts2.default, { posts: posts, filterPosts: this.filter }),
+                _react2.default.createElement(_FilterPosts2.default, {
+                    posts: posts,
+                    filterPosts: this.filter,
+                    inputRef: function inputRef(el) {
+                        return _this2.inputElement = el;
+                    }
+                }),
                 _react2.default.createElement(_Menu2.default, {
                     onAddingPostHandler: this.onAddingPostHandler,
                     onDeletingPostHandler: this.onDeletingPostHandler,
@@ -26879,24 +26887,19 @@ var PostCreator = function (_React$Component) {
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PostCreator.__proto__ || Object.getPrototypeOf(PostCreator)).call.apply(_ref, [this].concat(args))), _this), _this.createBlock = function () {
-            var title = document.getElementById('title-input-post');
-            var author = document.getElementById('author-input-post');
-            var published = document.getElementById('date-input-post');
-            var text = document.getElementById('text-input-post');
-            var id = document.getElementById('id-input-post');
             var valueNewPost = {
-                title: title.value,
-                author: author.value,
-                published: published.value,
-                text: text.value,
-                id: id.value
+                title: _this.inputTitle.value,
+                author: _this.inputAuthor.value,
+                published: _this.inputDate.value,
+                text: _this.inputText.value,
+                id: _this.inputId.value
             };
 
-            title.value = '';
-            author.value = '';
-            published.value = '';
-            text.value = '';
-            id.value = '';
+            _this.inputTitle.value = '';
+            _this.inputAuthor.value = '';
+            _this.inputDate.value = '';
+            _this.inputText.value = '';
+            _this.inputId.value = '';
 
             _this.props.createBlock(valueNewPost);
         }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -26905,6 +26908,8 @@ var PostCreator = function (_React$Component) {
     _createClass(PostCreator, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             var classForm = this.props.classForm;
 
 
@@ -26922,7 +26927,9 @@ var PostCreator = function (_React$Component) {
                             null,
                             ' Title '
                         ),
-                        _react2.default.createElement('input', { id: 'title-input-post', type: 'text', className: 'form-control' })
+                        _react2.default.createElement('input', { ref: function ref(input) {
+                                return _this2.inputTitle = input;
+                            }, type: 'text', className: 'form-control' })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -26932,7 +26939,9 @@ var PostCreator = function (_React$Component) {
                             null,
                             ' Author '
                         ),
-                        _react2.default.createElement('input', { id: 'author-input-post', type: 'text', className: 'form-control' })
+                        _react2.default.createElement('input', { ref: function ref(input) {
+                                return _this2.inputAuthor = input;
+                            }, type: 'text', className: 'form-control' })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -26942,7 +26951,9 @@ var PostCreator = function (_React$Component) {
                             null,
                             ' Published '
                         ),
-                        _react2.default.createElement('input', { id: 'date-input-post', type: 'text', className: 'form-control' })
+                        _react2.default.createElement('input', { ref: function ref(input) {
+                                return _this2.inputDate = input;
+                            }, type: 'text', className: 'form-control' })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -26952,7 +26963,9 @@ var PostCreator = function (_React$Component) {
                             null,
                             ' Text '
                         ),
-                        _react2.default.createElement('input', { id: 'text-input-post', type: 'text', className: 'form-control' })
+                        _react2.default.createElement('input', { ref: function ref(input) {
+                                return _this2.inputText = input;
+                            }, type: 'text', className: 'form-control' })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -26962,7 +26975,9 @@ var PostCreator = function (_React$Component) {
                             null,
                             ' Id '
                         ),
-                        _react2.default.createElement('input', { id: 'id-input-post', type: 'text', className: 'form-control' })
+                        _react2.default.createElement('input', { ref: function ref(input) {
+                                return _this2.inputId = input;
+                            }, type: 'text', className: 'form-control' })
                     ),
                     _react2.default.createElement('div', { id: 'result-creating' })
                 ),
@@ -27026,17 +27041,15 @@ var PostDeletingForm = function (_React$Component) {
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PostDeletingForm.__proto__ || Object.getPrototypeOf(PostDeletingForm)).call.apply(_ref, [this].concat(args))), _this), _this.deletePost = function () {
-            var id = document.getElementById('id-input-delete');
-
-            _this.props.deletePost(id.value);
-
-            id.value = '';
+            _this.props.deletePost(_this.inputDeleteId.value);
+            _this.inputDeleteId.value = '';
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(PostDeletingForm, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
 
             return _react2.default.createElement(
                 'div',
@@ -27049,7 +27062,13 @@ var PostDeletingForm = function (_React$Component) {
                         null,
                         ' Enter Id for deleting'
                     ),
-                    _react2.default.createElement('input', { id: 'id-input-delete', type: 'text', className: 'form-control' })
+                    _react2.default.createElement('input', {
+                        type: 'text',
+                        className: 'form-control',
+                        ref: function ref(input) {
+                            return _this2.inputDeleteId = input;
+                        }
+                    })
                 ),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(
@@ -27134,7 +27153,8 @@ var FilterPosts = function (_React$Component) {
             id: 'id-input-filter',
             type: 'text',
             className: 'form-control',
-            onChange: this.filter
+            onChange: this.filter,
+            ref: this.props.inputRef
           })
         )
       );

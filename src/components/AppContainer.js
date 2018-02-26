@@ -42,7 +42,7 @@ export default class AppContainer extends React.Component {
     }
 
     filter = () => {
-        const valueOfFilter = document.getElementById('id-input-filter').value;
+        const valueOfFilter = this.inputElement.value;
 
         this.setState(({ posts }) => {
             const newPosts = posts.filter(({ author }) => author.indexOf(valueOfFilter) > -1);
@@ -59,7 +59,11 @@ export default class AppContainer extends React.Component {
         return (
             <div>
             <h3>Posts</h3>
-            <FilterPosts posts={posts} filterPosts={this.filter} />
+            <FilterPosts
+                posts={posts}
+                filterPosts={this.filter}
+                inputRef={el => this.inputElement = el}
+            />
             <Menu
                 onAddingPostHandler={this.onAddingPostHandler}
                 onDeletingPostHandler={this.onDeletingPostHandler}

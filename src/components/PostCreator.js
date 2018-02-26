@@ -3,24 +3,19 @@ import React from 'react';
 export default class PostCreator extends React.Component {
 
     createBlock = () => {
-        const title = document.getElementById('title-input-post');
-        const author = document.getElementById('author-input-post');
-        const published = document.getElementById('date-input-post');
-        const text = document.getElementById('text-input-post');
-        const id = document.getElementById('id-input-post');
         const valueNewPost = {
-            title: title.value,
-            author: author.value,
-            published: published.value,
-            text: text.value,
-            id: id.value,
+            title: this.inputTitle.value,
+            author: this.inputAuthor.value,
+            published: this.inputDate.value,
+            text: this.inputText.value,
+            id: this.inputId.value,
         }
 
-        title.value = '';
-        author.value = '';
-        published.value = '';
-        text.value = '';
-        id.value = ''
+        this.inputTitle.value = '';
+        this.inputAuthor.value = '';
+        this.inputDate.value = '';
+        this.inputText.value = '';
+        this.inputId.value = ''
 
         this.props.createBlock(valueNewPost);
     }
@@ -33,23 +28,23 @@ export default class PostCreator extends React.Component {
           <div>
               <div className='col-auto'>
                   <label> Title </label>
-                      <input id='title-input-post' type='text' className='form-control'/>
+                      <input ref={input => this.inputTitle = input} type='text' className='form-control'/>
               </div>
               <div className='col-auto'>
                   <label> Author </label>
-                      <input id='author-input-post' type='text' className='form-control'/>
+                      <input ref={input => this.inputAuthor = input} type='text' className='form-control'/>
               </div>
               <div className='col-auto'>
                   <label> Published </label>
-                      <input id='date-input-post' type='text' className='form-control'/>
+                      <input ref={input => this.inputDate = input} type='text' className='form-control'/>
               </div>
               <div className='col-auto'>
                   <label> Text </label>
-                      <input id='text-input-post' type='text' className='form-control'/>
+                      <input ref={input => this.inputText = input} type='text' className='form-control'/>
               </div>
               <div className='col-auto'>
                   <label> Id </label>
-                      <input id='id-input-post' type='text' className='form-control'/>
+                      <input ref={input => this.inputId = input} type='text' className='form-control'/>
               </div>
               <div id='result-creating'></div>
           </div>

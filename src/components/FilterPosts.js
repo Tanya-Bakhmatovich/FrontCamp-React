@@ -17,6 +17,7 @@ export default class FilterPosts extends React.Component {
                       type='text'
                       className='form-control'
                       onChange={this.filter}
+                      ref={this.props.inputRef}
                   />
           </div>
       </div>

@@ -3,11 +3,8 @@ import React from 'react';
 export default class PostDeletingForm extends React.Component {
 
     deletePost = () => {
-        const id = document.getElementById('id-input-delete');
-
-        this.props.deletePost(id.value);
-
-        id.value = '';
+        this.props.deletePost(this.inputDeleteId.value);
+        this.inputDeleteId.value = '';
     }
 
     render() {
@@ -16,7 +13,11 @@ export default class PostDeletingForm extends React.Component {
             <div className='form-group'>
             <div className='col-auto'>
                 <label> Enter Id for deleting</label>
-                    <input id='id-input-delete' type='text' className='form-control'/>
+                    <input
+                        type='text'
+                        className='form-control'
+                        ref={input => this.inputDeleteId = input}
+                    />
             </div>
             <br/>
             <button
