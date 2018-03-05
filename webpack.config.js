@@ -4,6 +4,11 @@ const autoprefixer = require("autoprefixer");
 
 const browserConfig = {
     entry: "./src/browser/index.js",
+    node: {
+        fs: 'empty',
+        tls: 'empty',
+        net: 'empty',
+   },
     output: {
         path: __dirname,
         filename: "./dist/bundle.js"
@@ -48,6 +53,11 @@ const browserConfig = {
 const serverConfig = {
   entry: "./src/server/index.js",
   target: "node",
+  node: {
+    fs: 'empty',
+    tls: 'empty',
+    net: 'empty',
+},
   output: {
     path: __dirname,
     filename: "server.js",
@@ -59,11 +69,6 @@ const serverConfig = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ["babel-loader"]
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ["eslint-loader"] 
       },
       {
         test: /\.html$/,

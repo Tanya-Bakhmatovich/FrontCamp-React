@@ -2,9 +2,20 @@ import React from 'react';
 
 export default class PostDeletingForm extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {
+            id: ''
+        };
+    }
+
+    handleChange = (e) => {
+        this.setState({ id: e.target.value });
+    }
+
     deletePost = () => {
-        this.props.deletePost(this.inputDeleteId.value);
-        this.inputDeleteId.value = '';
+        this.props.deleteBlog(this.state.id);
+        this.setState({ id: '' });
     }
 
     render() {
@@ -16,7 +27,8 @@ export default class PostDeletingForm extends React.Component {
                     <input
                         type='text'
                         className='form-control'
-                        ref={input => this.inputDeleteId = input}
+                        value={this.state.id}
+                        onChange={this.handleChange}
                     />
             </div>
             <br/>

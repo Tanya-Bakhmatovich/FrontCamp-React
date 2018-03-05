@@ -1,6 +1,7 @@
 import React from 'react';
 import PostCreator from './PostCreator';
 import PostDeletingForm from './PostDeletingForm';
+import ResultOfAction from './ResultOfAction';
 
 export default class Menu extends React.Component {
 
@@ -9,6 +10,8 @@ export default class Menu extends React.Component {
       this.state = {
           disabled: true,
           deleting: false,
+          showResult: false,
+          message: '',
       };
   }
 
@@ -21,12 +24,16 @@ export default class Menu extends React.Component {
       })
   }
 
-  createBlock = (value) => {
-      this.props.onAddingPostHandler(value);
+  createBlog = ({ value, message, success }) => {
+      this.setState({ showResult: !!message, message, success });
+      if(value) {
+          this.props.addBlog(value);
+      }
+      setTimeout(() => this.setState({ showResult: false }), 3000);
   }
 
   deletePost = (id) => {
-      this.props.onDeletingPostHandler(id);
+      this.props.removeBlog(id);
   }
 
   changeDeleteState = () => {
@@ -39,11 +46,12 @@ export default class Menu extends React.Component {
   }
 
   render() {
-    const { disabled, deleting } = this.state;
-    const { posts } = this.props;
+    const { disabled, deleting, showResult, message, success } = this.state;
+    const { blogs, addBlog, removeBlog } = this.props;
 
     return (
         <div>
+            {showResult && <ResultOfAction message={message} success={success} />}
             <button
                 onClick={this.showHideFormAddingPost}
                 disabled={!disabled}
@@ -60,13 +68,13 @@ export default class Menu extends React.Component {
             </button>
             <button
                 onClick={this.changeDeleteState}
-                disabled={!posts.length}
+                disabled={!blogs.length}
                 className='btn btn-primary'
             >
                 Delete post
             </button>
-            {!disabled && <PostCreator createBlock={this.createBlock} />}
-            {deleting && <PostDeletingForm deletePost={this.deletePost} />}
+            {!disabled && <PostCreator createBlog={this.createBlog} />}
+            {deleting && <PostDeletingForm deleteBlog={removeBlog} />}
             <br/>
         </div>
     );
