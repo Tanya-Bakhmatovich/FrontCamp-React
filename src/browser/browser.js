@@ -11,7 +11,7 @@ import App from '../containers/App';
 import { AppContainer } from 'react-hot-loader';
 
 const store = createStore(rootReducer);
-hghv
+
 render(
     <Provider store={store}>
         <Router history={browserHistory}>
