@@ -1,4 +1,4 @@
-import { ADD_BLOG, REMOVE_BLOG, FILTER_BLOGS } from '../actions';
+import { ADD_BLOG, REMOVE_BLOG, FILTER_BLOGS } from '../actions/actions';
 
 let blogs = [];
 

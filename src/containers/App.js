@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Blog from './../components/Blogs/BlogAction/Blog';
 import Menu from './../components/Blogs/BlogAction/Menu';
 import FilterPosts from './../components/Blogs/BlogAction/FilterPosts';
-import { addBlog, removeBlog, filterBlogs } from '../redux/actions';
+import { addBlog, removeBlog, filterBlogs } from '../redux/actions/actions';
 
 const App = props => (
     <div>

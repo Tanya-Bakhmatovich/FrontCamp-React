@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, browserHistory } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from './../redux/reducers/index';
+import rootReducer from './../redux/reducers/reducers';
 import WelcomePage from '../components/WelcomePage';
 import RegisterForm from '../components/RegisterForm';
 import LoginForm from '../components/LoginForm';

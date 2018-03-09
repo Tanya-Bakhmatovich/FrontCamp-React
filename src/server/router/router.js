@@ -2,9 +2,9 @@ import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import WelcomePage from '../../components/WelcomePage';
-import { createStoreб applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from './../../redux/reducers/index';
+import rootReducer from './../../redux/reducers/reducers';
 import { StaticRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import RegisterForm from '../../components/RegisterForm';
@@ -15,7 +15,7 @@ import createLogger from 'redux-logger';
 
 const router = express.Router();
 const logger = createLogger();
-const store = createStore(rootReducer, initialState = {}, application(thunk, logger));
+const store = createStore(rootReducer);
 const context = {};
 
 router.get('/', (req, res, next) => {

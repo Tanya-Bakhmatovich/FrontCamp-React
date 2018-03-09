@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import router from './router/index';
+import router from './router/router';
 const blogRouter = require('./router/blogRouter');
 const userRouter = require('./router/userRouter');
 const mongoose = require('mongoose');

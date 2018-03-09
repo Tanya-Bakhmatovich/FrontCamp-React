@@ -3,7 +3,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 
 const browserConfig = {
-    entry: "./src/browser/index.js",
+    entry: "./src/browser/browser.js",
     node: {
         fs: 'empty',
         tls: 'empty',
@@ -51,7 +51,7 @@ const browserConfig = {
 }
 
 const serverConfig = {
-  entry: "./src/server/index.js",
+  entry: "./src/server/server.js",
   target: "node",
   node: {
     fs: 'empty',
