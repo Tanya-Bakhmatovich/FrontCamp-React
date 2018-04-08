@@ -1,9 +1,11 @@
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const autoprefixer = require("autoprefixer");
+const nodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
 
 const browserConfig = {
-    entry: "./src/browser/index.js",
+    entry: "./src/browser/browser.js",
     output: {
         path: __dirname,
         filename: "./dist/bundle.js"
@@ -42,12 +44,18 @@ const browserConfig = {
           })
         }
       ],
-    }
+  },
+  plugins: [
+      new webpack.DefinePlugin({
+          __isBrowser__: 'true'
+      })
+  ]
 }
 
 const serverConfig = {
-  entry: "./src/server/index.js",
-  target: "node",
+  entry: './src/server/server.js',
+  target: 'node',
+  externals: [nodeExternals()],
   output: {
     path: __dirname,
     filename: "server.js",
@@ -60,11 +68,11 @@ const serverConfig = {
         exclude: /node_modules/,
         use: ["babel-loader"]
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ["eslint-loader"] 
-      },
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   use: ["eslint-loader"]
+      // },
       {
         test: /\.html$/,
         use: [
@@ -82,7 +90,12 @@ const serverConfig = {
         ]
       }
     ],
-  }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            __isBrowser__: 'false'
+        })
+    ]
 }
 
 module.exports = [browserConfig, serverConfig];

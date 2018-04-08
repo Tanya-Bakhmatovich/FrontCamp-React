@@ -1,0 +1,530 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Blog should match snapshot 1`] = `
+<div
+  className="blog-block col-md-4 list-group-item d-none"
+>
+  <div
+    className="blog-title"
+  >
+    <strong>
+      Title:
+    </strong>
+     
+    title
+  </div>
+  <div
+    className="blog-author"
+  >
+    <strong>
+      Author:
+    </strong>
+     
+    author
+  </div>
+  <div
+    className="blog-date"
+  >
+    <strong>
+      Published:
+    </strong>
+     
+    published
+  </div>
+  <br />
+  <div
+    className="blog-text"
+  >
+    text
+  </div>
+</div>
+`;
+
+exports[`Component BlogUpdatingForm should match snapshot 1`] = `
+<div
+  className="form-group"
+>
+  <div
+    className="col-auto"
+  >
+    <label>
+       Enter Id for editing
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="col-auto"
+  >
+    <label>
+       Title 
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="col-auto"
+  >
+    <label>
+       Author 
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="col-auto"
+  >
+    <label>
+       Published 
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="col-auto"
+  >
+    <label>
+       Text 
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <br />
+  <button
+    className="btn btn-primary"
+    id="edit-blog-button"
+    onClick={[Function]}
+    type="button"
+  >
+    Update
+  </button>
+</div>
+`;
+
+exports[`Component FilterPosts should match snapshot 1`] = `
+<div
+  className="form-group"
+>
+  <div
+    className="col-auto"
+  >
+    <label>
+       Filter by authors
+    </label>
+    <input
+      className="form-control"
+      id="id-input-filter"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+</div>
+`;
+
+exports[`Component LoginForm should match snapshot 1`] = `
+<div>
+  <Navbar />
+  <form
+    action="http://localhost:3000/users/login"
+    method="post"
+  >
+    <div
+      className="form-group"
+    >
+      <label>
+        Username
+      </label>
+      <input
+        className="form-control"
+        name="username"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label>
+        Password
+      </label>
+      <input
+        className="form-control"
+        name="password"
+        onChange={[Function]}
+        type="password"
+      />
+    </div>
+    <button
+      className="btn btn-primary"
+      id="login-btn"
+      onClick={[Function]}
+      type="submit"
+    >
+      Log in
+    </button>
+  </form>
+</div>
+`;
+
+exports[`Component Menu should match snapshot 1`] = `
+<div>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+  >
+    Add post
+  </button>
+  <button
+    className="btn btn-primary"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Hide form
+  </button>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+  >
+    Delete post
+  </button>
+  <br />
+</div>
+`;
+
+exports[`Component NavBar should match snapshot 1`] = `
+<ul>
+  <li
+    key="users/register"
+  >
+    <NavLink
+      activeClassName="active"
+      activeStyle={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+      ariaCurrent="true"
+      to="/users/register"
+    >
+      Register
+    </NavLink>
+  </li>
+  <li
+    key="users/login"
+  >
+    <NavLink
+      activeClassName="active"
+      activeStyle={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+      ariaCurrent="true"
+      to="/users/login"
+    >
+      Log in
+    </NavLink>
+  </li>
+  <li
+    key="blogs"
+  >
+    <NavLink
+      activeClassName="active"
+      activeStyle={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+      ariaCurrent="true"
+      to="/blogs"
+    >
+      Blogs
+    </NavLink>
+  </li>
+</ul>
+`;
+
+exports[`Component NoMatch should match snapshot 1`] = `
+<div>
+  This page is not exist.
+</div>
+`;
+
+exports[`Component PostCreator should match snapshot 1`] = `
+<div
+  className="form-group undefined"
+>
+  <div>
+    <div
+      className="col-auto"
+    >
+      <label>
+         Title 
+      </label>
+      <input
+        className="form-control"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="col-auto"
+    >
+      <label>
+         Author 
+      </label>
+      <input
+        className="form-control"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="col-auto"
+    >
+      <label>
+         Published 
+      </label>
+      <input
+        className="form-control"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="col-auto"
+    >
+      <label>
+         Text 
+      </label>
+      <input
+        className="form-control"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="col-auto"
+    >
+      <label>
+         Id 
+      </label>
+      <input
+        className="form-control"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      id="result-creating"
+    />
+  </div>
+  <br />
+  <button
+    className="btn btn-primary"
+    id="post-blog-button"
+    onClick={[Function]}
+    type="button"
+  >
+    Create
+  </button>
+</div>
+`;
+
+exports[`Component PostDeletingForm should match snapshot 1`] = `
+<div
+  className="form-group"
+>
+  <div
+    className="col-auto"
+  >
+    <label>
+       Enter Id for deleting
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <br />
+  <button
+    className="btn btn-primary"
+    id="post-blog-button"
+    onClick={[Function]}
+    type="button"
+  >
+    Delete
+  </button>
+</div>
+`;
+
+exports[`Component RegisterForm should match snapshot 1`] = `
+<div>
+  <Navbar />
+  <form
+    id="reg"
+  >
+    <div
+      className="form-group"
+    >
+      <label>
+        Username
+      </label>
+      <input
+        className="form-control"
+        name="username"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label>
+        Password
+      </label>
+      <input
+        className="form-control"
+        name="password"
+        onChange={[Function]}
+        type="password"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label>
+        Email
+      </label>
+      <input
+        className="form-control"
+        name="email"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label>
+        Name
+      </label>
+      <input
+        className="form-control"
+        name="name"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <button
+      className="btn btn-primary"
+      form="reg"
+      id="register-btn"
+      onClick={[Function]}
+      type="submit"
+    >
+      Register
+    </button>
+  </form>
+</div>
+`;
+
+exports[`Component RegisterForm should match snapshot 2`] = `
+<div>
+  <Navbar />
+  <form
+    id="reg"
+  >
+    <div
+      className="form-group"
+    >
+      <label>
+        Username
+      </label>
+      <input
+        className="form-control"
+        name="username"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label>
+        Password
+      </label>
+      <input
+        className="form-control"
+        name="password"
+        onChange={[Function]}
+        type="password"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label>
+        Email
+      </label>
+      <input
+        className="form-control"
+        name="email"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label>
+        Name
+      </label>
+      <input
+        className="form-control"
+        name="name"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <button
+      className="btn btn-primary"
+      form="reg"
+      id="register-btn"
+      onClick={[Function]}
+      type="submit"
+    >
+      Register
+    </button>
+  </form>
+</div>
+`;

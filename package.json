@@ -2,10 +2,11 @@
   "name": "frontcamp-react-ssr",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "build": "webpack-dev-server --progress --colors --config ./webpack.config.js",
-    "start": "webpack -w & node server.js"
+    "start": "webpack -w & nodemon server.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,9 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.9",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.3",
     "eslint": "^4.18.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-loader": "^1.9.0",
@@ -46,6 +50,12 @@
     "file-loader": "^1.1.6",
     "postcss-loader": "^2.1.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "jest": {
+    "modulePaths": [
+      "<rootDir>/src/"
+    ]
   }
 }
